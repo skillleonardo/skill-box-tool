@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulizia Audio - Calcolo Fascicoli</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen font-sans text-gray-800">
+
+    <div class="max-w-4xl mx-auto py-12 px-4">
+
+        <!-- Intestazione -->
+        <div class="bg-white rounded-t-xl shadow-sm p-8 border-b border-gray-100">
+            <h1 class="text-3xl font-bold text-blue-700">Calcolo Cartelle</h1>
+            <p class="text-gray-500 mt-2">Versione V3: Conteggio caratteri e cartelle (1500 battute).</p>
+        </div>
+
+        <!-- Area Statistiche -->
+        <div id="stats-panel"
+            class="hidden bg-blue-50 p-6 border-b border-blue-100 flex justify-around items-center text-center animate-fade-in">
+            <div>
+                <p class="text-sm uppercase tracking-wide text-blue-600 font-semibold">Caratteri (inclusi spazi)</p>
+                <p id="char-count-display" class="text-3xl font-bold text-blue-900">0</p>
+            </div>
+            <div class="h-12 w-px bg-blue-200"></div>
+            <div>
+                <p class="text-sm uppercase tracking-wide text-green-600 font-semibold">Cartelle (1500 caratteri)</p>
+                <p id="cartelle-display" class="text-3xl font-bold text-green-700">0</p>
+            </div>
+        </div>
+
+        <!-- Area Upload -->
+        <div class="bg-white rounded-b-xl shadow-lg p-8">
+            <div id="drop-zone"
+                class="border-4 border-dashed border-gray-200 rounded-xl p-12 text-center hover:border-blue-400 hover:bg-blue-50 transition-all cursor-pointer group">
+                <input type="file" id="file-input" class="hidden" accept=".docx">
+                <div class="space-y-4">
+                    <svg class="mx-auto h-16 w-16 text-gray-300 group-hover:text-blue-500 transition-colors" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    <div class="text-xl font-medium text-gray-600 group-hover:text-blue-700 transition-colors"
+                        id="file-name">
+                        Clicca o trascina qui il file Word
+                    </div>
+                    <p class="text-sm text-gray-400">Include fix per tabelle con celle unite e layout complessi.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 flex justify-center flex-col items-center">
+                <button id="process-btn" disabled
+                    class="bg-blue-600 text-white text-lg px-12 py-4 rounded-full font-semibold shadow-lg hover:bg-blue-700 hover:shadow-xl disabled:bg-gray-300 disabled:shadow-none disabled:cursor-not-allowed transform hover:-translate-y-1 transition-all">
+                    Calcola Cartelle
+                </button>
+                <p id="status-msg" class="mt-4 text-sm font-medium text-gray-500 min-h-[20px]"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Main Application Logic -->
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>
