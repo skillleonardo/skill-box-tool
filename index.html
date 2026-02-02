@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill-Box Tool Sviluppo</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #343a40;
+            --card-bg: #ffffff;
+            --accent-color: #007bff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            margin-top: 4rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
+
+        p.subtitle {
+            color: #6c757d;
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 2rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            border-color: var(--accent-color);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 2rem;
+            color: #adb5bd;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Skill-Box Tool Sviluppo</h1>
+        <p class="subtitle">Raccolta strumenti per la produttività</p>
+    </header>
+
+    <main class="grid">
+
+        <!-- Tool 1: Calcolo Cartelle -->
+        <a href="calcolo-cartelle/index.html" class="card">
+            <div>
+                <div class="card-icon">📝</div>
+                <div class="card-title">Calcolo Cartelle</div>
+                <div class="card-desc">
+                    Tool per il conteggio dei caratteri e la conversione in cartelle editoriali standard (1500 battute).
+                </div>
+            </div>
+        </a>
+
+        <!-- Placeholder per futuri tool -->
+        <a href="#" class="card" style="opacity: 0.5; pointer-events: none; border-style: dashed;">
+            <div>
+                <div class="card-icon">🔜</div>
+                <div class="card-title">Prossimamente</div>
+                <div class="card-desc">
+                    Nuovi strumenti verranno aggiunti qui.
+                </div>
+            </div>
+        </a>
+
+    </main>
+
+    <footer>
+        &copy; 2026 Leonardo - Skill-Box Dev
+    </footer>
+
+</body>
+
+</html>
