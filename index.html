@@ -31,12 +31,93 @@
             font-weight: 300;
         }
 
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 300px;
+            background: #ffffff;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding-top: 5rem;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-link {
+            padding: 1.5rem 2rem;
+            color: #333;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sidebar-link:hover {
+            background-color: #fff0eb;
+            color: var(--primary-orange);
+        }
+
+        .menu-btn {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 1001;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-orange);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .menu-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .top-logo {
             position: absolute;
             top: 2rem;
             left: 2rem;
-            width: 48px;
-            height: 48px;
+            width: 150px;
+            height: 150px;
         }
 
         header {
@@ -138,6 +219,33 @@
 <body>
 
     <img src="icona.svg" alt="Logo" class="top-logo">
+
+    <!-- Sidebar & Toggle -->
+    <div class="overlay" id="overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <a href="index.html" class="sidebar-link">
+            <span>🏠</span> Home
+        </a>
+        <a href="calcolo-cartelle/index.html" class="sidebar-link">
+            <span>📝</span> Calcolo Cartelle
+        </a>
+    </div>
+    <button class="menu-btn" id="menu-btn">☰</button>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function toggleMenu() {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+            menuBtn.innerHTML = sidebar.classList.contains('open') ? '✕' : '☰';
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', toggleMenu);
+    </script>
 
     <header>
         <h1>Skill-Box Tool Sviluppo</h1>

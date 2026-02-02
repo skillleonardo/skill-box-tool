@@ -17,7 +17,7 @@ fileInput.onchange = (e) => {
     if (e.target.files.length > 0) {
         selectedFile = e.target.files[0];
         fileNameDisplay.textContent = selectedFile.name;
-        fileNameDisplay.classList.add('text-blue-700');
+        fileNameDisplay.classList.add('text-orange-600');
         processBtn.disabled = false;
         statsPanel.classList.add('hidden');
         statusMsg.textContent = "";
@@ -29,16 +29,16 @@ dropZone.onclick = () => fileInput.click();
 
 dropZone.ondragover = (e) => {
     e.preventDefault();
-    dropZone.classList.add('border-blue-400', 'bg-blue-50');
+    dropZone.classList.add('border-orange-400', 'bg-orange-50');
 };
 
 dropZone.ondragleave = () => {
-    dropZone.classList.remove('border-blue-400', 'bg-blue-50');
+    dropZone.classList.remove('border-orange-400', 'bg-orange-50');
 };
 
 dropZone.ondrop = (e) => {
     e.preventDefault();
-    dropZone.classList.remove('border-blue-400', 'bg-blue-50');
+    dropZone.classList.remove('border-orange-400', 'bg-orange-50');
     if (e.dataTransfer.files.length > 0) {
         fileInput.files = e.dataTransfer.files;
         fileInput.onchange({ target: fileInput });
