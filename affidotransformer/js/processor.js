@@ -105,10 +105,21 @@ export async function generateOutput(items, codice, cliente) {
     const content = await response.arrayBuffer();
 
     const zip = new window.PizZip(content);
-    const doc = new window.docxtemplater(zip, {
-        paragraphLoop: true,
-        linebreaks: true,
-    });
+
+    let doc;
+    try {
+        doc = new window.docxtemplater(zip, {
+            paragraphLoop: true,
+            linebreaks: true,
+        });
+    } catch (error) {
+        // Detailed error for template parsing issues
+        if (error.properties && error.properties.errors) {
+            const errorMessages = error.properties.errors.map(e => e.message).join(', ');
+            throw new Error("Errore nel template: " + errorMessages);
+        }
+        throw error;
+    }
 
     // Prepare Data
     // We need to map items to filename labels: 1-2, 1-3...
@@ -121,12 +132,22 @@ export async function generateOutput(items, codice, cliente) {
 
     const dateStr = new Date().toLocaleDateString('it-IT');
 
-    doc.render({
-        items: dataItems,
-        codice_corso: codice,
-        nome_cliente: cliente,
-        data_corrente: dateStr
-    });
+    try {
+        doc.render({
+            items: dataItems,
+            codice_corso: codice,
+            nome_cliente: cliente,
+            data_corrente: dateStr
+        });
+    } catch (error) {
+        if (error.properties && error.properties.errors) {
+            const errorMessages = error.properties.errors.map(e => {
+                return `Tag: "${e.properties.id}" - ${e.message}`;
+            }).join('\n');
+            throw new Error("Errore rendering template:\n" + errorMessages);
+        }
+        throw error;
+    }
 
     const out = doc.getZip().generate({
         type: "blob",
