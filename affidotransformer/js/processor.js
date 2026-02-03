@@ -92,6 +92,10 @@ export async function processDocument(arrayBuffer) {
 }
 
 export async function generateOutput(items, codice, cliente) {
+    if (typeof window.PizZip === 'undefined') {
+        throw new Error("La libreria PizZip non è stata caricata correttamente. Controlla la connessione internet.");
+    }
+
     // Load Template
     // Note: This fetch assumes the file is accessible relative to index.html
     const response = await fetch('assets/template.docx');
