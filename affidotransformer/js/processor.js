@@ -100,7 +100,7 @@ export async function generateOutput(items, codice, cliente) {
     }
     const content = await response.arrayBuffer();
 
-    const zip = new PizZip(content);
+    const zip = new window.PizZip(content);
     const doc = new window.docxtemplater(zip, {
         paragraphLoop: true,
         linebreaks: true,
